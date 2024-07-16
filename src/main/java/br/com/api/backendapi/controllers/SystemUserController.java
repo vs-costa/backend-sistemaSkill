@@ -72,7 +72,7 @@ public class SystemUserController {
 	        switch (role) {
 	            case "ADMIN":
 	                Role adminRole = roleRepository.findByName(TipoRoleEnum.ROLE_ADMIN)
-	                        .orElseThrow(() -> new RuntimeException("Erro: Role não encontrada."));
+	                		.orElseThrow(() -> new RuntimeException("Erro: Role não encontrada."));
 	                roles.add(adminRole);
 	                break;
 	            case "USUARIO":
@@ -85,13 +85,14 @@ public class SystemUserController {
 	        }
 
 	        // Criar e salvar o usuário com as roles específicas
-	        Usuario usuario = new Usuario();
 	        SystemUser usuarioResumido = new SystemUser();
 	        String encodedPass = passwordEncoder.encode(user.getSenha());
 	        usuarioResumido.setEmail(user.getEmail());
 	        usuarioResumido.setRole(roles);
 	        usuarioResumido.setSenha(encodedPass);
 	        systemUserService.save(usuarioResumido);
+	        
+	        Usuario usuario = new Usuario();
 	        usuario.setEmail(user.getEmail());
 	        usuario.setSenha(encodedPass);
 	        usuario.setSystemUser(usuarioResumido);
@@ -121,29 +122,4 @@ public class SystemUserController {
 	        throw new RuntimeException("Credenciais Inválidas");
 	    }
 	}
-
-//	@PostMapping("/login")
-//	public ResponseEntity<String> login(@Valid @RequestBody LoginDTO body) {
-//		try {
-//			UsernamePasswordAuthenticationToken authInputToken = new UsernamePasswordAuthenticationToken(
-//					body.getEmail(), body.getPassword());
-//
-//			authManager.authenticate(authInputToken);
-//
-//			SystemUser user = systemUserService.findByEmail(body.getEmail());
-//			SystemUser usuarioResumido = new SystemUser();
-//			usuarioResumido.setEmail(user.getEmail());
-//			usuarioResumido.setIdSystemUser(user.getIdSystemUser());
-//			usuarioResumido.setRole(user.getRole());
-//			String token = jwtUtil.generateTokenWithUserData(usuarioResumido);
-//			
-//			Map<String, Object> response = new HashMap<>();
-//	        response.put("token", token);
-//	        response.put("userId", usuarioResumido.getIdSystemUser());
-//			
-//			return ResponseEntity.status(HttpStatus.OK).body("Login efetuado com sucesso!\n\nToken:"+token);
-//		} catch (AuthenticationException authExc) {
-//			throw new RuntimeException("Credenciais Invalidas");
-//		}
-//	}
 }

@@ -8,12 +8,16 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 
 import br.com.api.backendapi.enums.LevelSkillEnum;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "tb_usuario_skill")
+@Getter
+@Setter
 public class UsuarioSkill {
     
     @Id
@@ -23,63 +27,15 @@ public class UsuarioSkill {
 
     @ManyToOne
     @JoinColumn(name = "usuario_id")
+    @NotBlank(message = "O usuário não pode ser nulo ou vazio")
     private Usuario usuario;
 
     @ManyToOne
     @JoinColumn(name = "skill_id")
+    @NotBlank(message = "A skill não pode ser nula ou vazia")
     private Skill skill;
 
-    @NotNull(message = "O nível de habilidade não pode ser nulo")
+    @NotBlank(message = "O nível de habilidade não pode ser nulo ou vazio")
     private LevelSkillEnum level;
 
-	public UsuarioSkill() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public UsuarioSkill(Long id, Usuario usuario, Skill skill,
-			@NotNull(message = "O nível de habilidade não pode ser nulo") LevelSkillEnum level) {
-		super();
-		this.id = id;
-		this.usuario = usuario;
-		this.skill = skill;
-		this.level = level;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-
-	public Skill getSkill() {
-		return skill;
-	}
-
-	public void setSkill(Skill skill) {
-		this.skill = skill;
-	}
-
-	public LevelSkillEnum getLevel() {
-		return level;
-	}
-
-	public void setLevel(LevelSkillEnum level) {
-		this.level = level;
-	}
-
-	@Override
-	public String toString() {
-		return "UsuarioSkill [id=" + id + ", usuario=" + usuario + ", skill=" + skill + ", level=" + level + "]";
-	}
 }

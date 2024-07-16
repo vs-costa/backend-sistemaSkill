@@ -1,46 +1,26 @@
 package br.com.api.backendapi.dto;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 import java.util.Set;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class SystemUserDTO {
-	
+
+	@NotBlank(message = "Campo e-mail não pode ser nulo")
+	@Email(message = "Email deve ser válido")
 	private String email;
-	private String senha;
-	private Set<String> role;
 	
-	public SystemUserDTO() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	@NotBlank(message = "Campo senha não pode ser nulo")
+    @Size(min = 6, message = "A senha deve ter pelo menos 6 caracteres")
+	private String senha;
+	
+	private Set<String> role;
 
-	public SystemUserDTO(String email, String senha, Set<String> role) {
-		super();
-		this.email = email;
-		this.senha = senha;
-		this.role = role;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-
-	public Set<String> getRole() {
-		return role;
-	}
-
-	public void setRole(Set<String> role) {
-		this.role = role;
-	}
 }

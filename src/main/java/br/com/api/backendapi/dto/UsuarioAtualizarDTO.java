@@ -1,34 +1,19 @@
 package br.com.api.backendapi.dto;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Size;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class UsuarioAtualizarDTO {
 	
+	@Email(message = "Deve ser um endereço de e-mail válido")
 	private String email;
+	
+	@Size(min = 6, message = "A senha deve ter no mínimo 6 caracteres")
 	private String senha;
 	
-	public UsuarioAtualizarDTO() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public UsuarioAtualizarDTO(String email, String senha) {
-		super();
-		this.email = email;
-		this.senha = senha;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
 }

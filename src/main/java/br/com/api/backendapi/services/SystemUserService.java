@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.api.backendapi.entities.SystemUser;
+import br.com.api.backendapi.exceptions.ResourceNotFoundException;
 import br.com.api.backendapi.repositories.SystemUserRepository;
 
 @Service
@@ -17,7 +18,7 @@ public class SystemUserService {
     
     public SystemUser findByEmail(String email) {
         Optional<SystemUser> userOptional = systemUserRepository.findByEmail(email);
-        return userOptional.orElse(null); // Retorna null se o usuário não for encontrado
+        return userOptional.orElseThrow(() -> new ResourceNotFoundException("Usuário com email " + email + " não encontrado."));
     }
     
     public SystemUser save(SystemUser systemUser) {
@@ -30,6 +31,6 @@ public class SystemUserService {
     
     public SystemUser findById(Long id) {
         Optional<SystemUser> userOptional = systemUserRepository.findById(id);
-        return userOptional.orElse(null); // Retorna null se o usuário não for encontrado
+        return userOptional.orElseThrow(() -> new ResourceNotFoundException("Usuário com id " + id + " não encontrado."));
     }
 }
