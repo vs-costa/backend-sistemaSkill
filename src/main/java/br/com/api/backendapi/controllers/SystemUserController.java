@@ -60,6 +60,11 @@ public class SystemUserController {
 	@PostMapping("/registro")
 	public ResponseEntity<String> cadastro(@RequestParam String email, @Valid @RequestBody SystemUserDTO user) {
 
+	    // Verificar se o e-mail já está cadastrado
+	    if (systemUserService.existsByEmail(email)) {
+	        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erro: E-mail já cadastrado.");
+	    }
+
 	    Set<String> strRoles = user.getRole();
 
 	    if (strRoles == null || strRoles.isEmpty()) {
@@ -72,7 +77,7 @@ public class SystemUserController {
 	        switch (role) {
 	            case "ADMIN":
 	                Role adminRole = roleRepository.findByName(TipoRoleEnum.ROLE_ADMIN)
-	                		.orElseThrow(() -> new RuntimeException("Erro: Role não encontrada."));
+	                        .orElseThrow(() -> new RuntimeException("Erro: Role não encontrada."));
 	                roles.add(adminRole);
 	                break;
 	            case "USUARIO":
@@ -91,7 +96,7 @@ public class SystemUserController {
 	        usuarioResumido.setRole(roles);
 	        usuarioResumido.setSenha(encodedPass);
 	        systemUserService.save(usuarioResumido);
-	        
+
 	        Usuario usuario = new Usuario();
 	        usuario.setEmail(user.getEmail());
 	        usuario.setSenha(encodedPass);

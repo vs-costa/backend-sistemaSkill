@@ -33,4 +33,8 @@ public class SystemUserService {
         Optional<SystemUser> userOptional = systemUserRepository.findById(id);
         return userOptional.orElseThrow(() -> new ResourceNotFoundException("Usuário com id " + id + " não encontrado."));
     }
+    
+    public boolean existsByEmail(String email) {
+        return systemUserRepository.findByEmail(email).isPresent();
+    }
 }
