@@ -10,6 +10,8 @@ import lombok.Setter;
 @Setter
 public class UsuarioAtualizarDTO {
 	
+	private Long id;
+	
 	@Email(message = "Deve ser um endereço de e-mail válido")
 	private String email;
 	

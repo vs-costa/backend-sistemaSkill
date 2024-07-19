@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import br.com.api.backendapi.enums.LevelSkillEnum;
 import lombok.Getter;
@@ -19,23 +19,21 @@ import lombok.Setter;
 @Getter
 @Setter
 public class UsuarioSkill {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "id_usuario_skill")
-    private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "usuario_id")
-    @NotBlank(message = "O usuário não pode ser nulo ou vazio")
-    private Usuario usuario;
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@Column(name = "id_usuario_skill")
+	private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "skill_id")
-    @NotBlank(message = "A skill não pode ser nula ou vazia")
-    private Skill skill;
+	@ManyToOne
+	@JoinColumn(name = "usuario_id")
+	private Usuario usuario;
 
-    @NotBlank(message = "O nível de habilidade não pode ser nulo ou vazio")
-    private LevelSkillEnum level;
+	@ManyToOne
+	@JoinColumn(name = "skill_id")
+	private Skill skill;
+
+	@NotNull(message = "O nível de habilidade não pode ser nulo")
+	private LevelSkillEnum level;
 
 }

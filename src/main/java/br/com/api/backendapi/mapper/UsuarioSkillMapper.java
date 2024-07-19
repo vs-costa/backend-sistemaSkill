@@ -14,6 +14,7 @@ public class UsuarioSkillMapper {
 	//Converter DTO
 	public UsuarioSkillDTO converterUsuarioSkillDTO(UsuarioSkill usuarioSkill) {
 	    UsuarioSkillDTO usuarioSkillConvertido = new UsuarioSkillDTO();
+	    usuarioSkillConvertido.setId(usuarioSkill.getId());
 	    usuarioSkillConvertido.setUsuarioId(usuarioSkill.getUsuario().getId());
 	    usuarioSkillConvertido.setSkillId(usuarioSkill.getSkill().getId());
 	    usuarioSkillConvertido.setLevel(usuarioSkill.getLevel());

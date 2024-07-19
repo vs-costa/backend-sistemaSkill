@@ -102,6 +102,18 @@
 			<artifactId>lombok</artifactId>
 			<scope>provided</scope>
 		</dependency>
+		<!-- SLF4J API -->
+		<!--<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>-->
+
+		<!-- Binding para Logback (opcional), pois ele é uma implementação
+		popular de SLF4J -->
+		<!--<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+		</dependency>-->
 
 
 	</dependencies>

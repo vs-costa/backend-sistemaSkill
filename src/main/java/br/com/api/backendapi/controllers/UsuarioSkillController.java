@@ -5,6 +5,8 @@ import javax.validation.Valid;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,10 +44,12 @@ public class UsuarioSkillController {
 	public UsuarioSkillDTO buscarPorID(@PathVariable Long id) {
 		return usuarioSkillService.buscarPorId(id);
 	}
-
+	
 	@GetMapping("/listar/{usuarioId}")
-	public List<UsuarioSkillDTO> listarPorUsuario(@PathVariable Long usuarioId) {
-		return usuarioSkillService.listarPorUsuario(usuarioId);
+	public PageResponse<UsuarioSkillDTO> listarPorUsuario(
+	        @PathVariable Long usuarioId,
+	        @PageableDefault(size = 5) Pageable pageable) {
+	    return usuarioSkillService.listarPorUsuario(usuarioId, pageable);
 	}
 
 	@GetMapping("/listar")
@@ -79,7 +83,7 @@ public class UsuarioSkillController {
 	public void excluir(@PathVariable Long id) {
 		usuarioSkillService.excluir(id);
 	}
-
+	
 	// Filtros
 	@GetMapping("/buscarPorLevel")
 	public List<UsuarioSkillDTO> buscarPorLevel(@RequestParam LevelSkillEnum level) {
@@ -101,5 +105,20 @@ public class UsuarioSkillController {
     @GetMapping("/listarOrdenadasPorLevel")
     public List<UsuarioSkillDTO> listarUsuarioSkillsOrdenadasPorLevel() {
         return usuarioSkillService.listarTodasOrdenadasPorLevel();
+    }
+    
+    @GetMapping("/buscarPorNomeSkill")
+    public List<UsuarioSkillDTO> buscarPorNomeSkill(@RequestParam String skillNome) {
+        return usuarioSkillService.listarPorNomeSkill(skillNome);
+    }
+    
+    @GetMapping("/listarOrdenadasPorNomeSkillAsc")
+    public List<UsuarioSkillDTO> listarUsuarioSkillsOrdenadasPorNomeSkillAsc() {
+        return usuarioSkillService.listarTodasOrdenadasPorNomeSkillAsc();
+    }
+
+    @GetMapping("/listarOrdenadasPorNomeSkillDesc")
+    public List<UsuarioSkillDTO> listarUsuarioSkillsOrdenadasPorNomeSkillDesc() {
+        return usuarioSkillService.listarTodasOrdenadasPorNomeSkillDesc();
     }
 }

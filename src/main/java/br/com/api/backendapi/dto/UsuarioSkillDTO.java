@@ -8,6 +8,7 @@ import lombok.Setter;
 @Setter
 public class UsuarioSkillDTO {
     
+	private Long id;
     private Long usuarioId;
     private Long skillId;
     private String skillNome;

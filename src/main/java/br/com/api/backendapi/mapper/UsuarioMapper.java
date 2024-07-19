@@ -13,6 +13,7 @@ public class UsuarioMapper {
 	//Converter DTO
 	public UsuarioDTO converterUsuarioDTO(Usuario usuario) {
 		UsuarioDTO usuarioConvertido = new UsuarioDTO();
+		usuarioConvertido.setId(usuario.getId());
 		usuarioConvertido.setEmail(usuario.getEmail());
 		usuarioConvertido.setSenha(usuario.getSenha());
 		return usuarioConvertido;
@@ -21,6 +22,7 @@ public class UsuarioMapper {
 	//Atualizar DTO
 	public UsuarioAtualizarDTO converterUsuarioAtualizarDTO(Usuario usuario) {
 		UsuarioAtualizarDTO usuarioConvertido = new UsuarioAtualizarDTO();
+		usuarioConvertido.setId(usuario.getId());
 		usuarioConvertido.setEmail(usuario.getEmail());
 		usuarioConvertido.setSenha(usuario.getSenha());
 		return usuarioConvertido;

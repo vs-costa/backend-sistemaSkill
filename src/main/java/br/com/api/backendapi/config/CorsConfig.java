@@ -10,8 +10,8 @@ public class CorsConfig implements WebMvcConfigurer {
 	@Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-//                .allowedOrigins("http://localhost:5173", "http://192.168.1.4")
-        		.allowedOrigins("*")
+                .allowedOrigins("http://localhost:5173", "http://192.168.1.5:8081")
+//        		.allowedOrigins("*")
                 .allowedMethods("GET", "POST", "PUT", "DELETE")
                 .allowedHeaders("Origin", "Content-Type", "Accept", "Authorization")
                 .maxAge(3600); // Tempo em segundos que a configuração CORS é mantida em cache pelo navegador

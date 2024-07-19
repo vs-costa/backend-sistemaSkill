@@ -14,6 +14,7 @@ public class SkillMapper {
 	//Converter DTO
 	public SkillDTO converterSkillDTO(Skill skill) {
 		SkillDTO skillConvertida = new SkillDTO();
+		skillConvertida.setId(skill.getId());
 		skillConvertida.setNome(skill.getNome());
 		skillConvertida.setDescricao(skill.getDescricao());
 		return skillConvertida;
@@ -22,6 +23,7 @@ public class SkillMapper {
 	//AtualizarDTO
 	public SkillAtualizarDTO converterSkillAtualizarDTO(Skill skill) {
 		SkillAtualizarDTO skillConvertida = new SkillAtualizarDTO();
+		skillConvertida.setId(skill.getId());
 		skillConvertida.setNome(skill.getNome());
 		skillConvertida.setDescricao(skill.getDescricao());
 		skillConvertida.setImagem(skill.getImagem());

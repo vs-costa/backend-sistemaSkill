@@ -11,6 +11,8 @@ import lombok.Setter;
 @Setter
 public class UsuarioDTO {
 	
+	private Long id;
+	
 	@NotBlank(message = "Campo e-mail não pode ser nulo")
 	@Email(message = "Email deve ser válido")
 	private String email;

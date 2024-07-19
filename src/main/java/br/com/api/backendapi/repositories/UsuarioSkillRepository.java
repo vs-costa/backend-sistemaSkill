@@ -8,6 +8,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import br.com.api.backendapi.entities.Usuario;
 import br.com.api.backendapi.entities.UsuarioSkill;
 import br.com.api.backendapi.enums.LevelSkillEnum;
 
@@ -22,5 +23,12 @@ public interface UsuarioSkillRepository extends JpaRepository<UsuarioSkill, Long
     
     Page<UsuarioSkill> findAll(Pageable pageable);
     
+    Page<UsuarioSkill> findByUsuario(Usuario usuario, Pageable pageable);
+    
     List<UsuarioSkill> findAll(Sort sort);
+    
+    List<UsuarioSkill> findAllByOrderBySkillNomeAsc();
+    
+    List<UsuarioSkill> findAllByOrderBySkillNomeDesc();
+    
 }
